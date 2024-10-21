@@ -1,0 +1,25 @@
+.star-review {
+  width: 100px;
+}
+
+.star-review-button {
+  border: 0;
+  background: transparent;
+  font-size: 1.5em;
+  margin: 0;
+  padding: 0;
+  float: right;
+}
+
+.star-review button:hover,
+.star-review button:hover + button,
+.star-review button:hover + button + button,
+.star-review button:hover + button + button + button,
+.star-review button:hover + button + button + button + button {
+  color: #faa;
+}
+
+img {
+  width: 150px;
+  height: 330px;
+}

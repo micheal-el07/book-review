@@ -1,8 +1,9 @@
 const { Router } = require("express");
-const { getHomeHandler } = require("../controllers/page.controller");
+const { getHomePageHandler } = require("../controllers/page.controller");
+const { getAllBookHandler } = require("../controllers/books.controller");
 
 const router = Router();
 
-router.route("/").get(getHomeHandler);
+router.route("/").get(getHomePageHandler);
 
 module.exports = router;

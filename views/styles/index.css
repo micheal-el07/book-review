@@ -1,0 +1,48 @@
+.feature {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 20px;
+  background-color: #f0f0f0;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.book-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.book {
+  width: calc(20% - 10px);
+  margin: 10px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+  text-align: center;
+}
+
+.book img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.book h2 {
+  margin-bottom: 5px;
+}
+
+.book p {
+  font-size: 14px;
+  margin-bottom: 0;
+}

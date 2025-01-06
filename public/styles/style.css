@@ -1,0 +1,147 @@
+.star-review {
+  width: 100px;
+}
+
+.star-review-button {
+  border: 0;
+  background: transparent;
+  font-size: 1.5em;
+  margin: 0;
+  padding: 0;
+  float: right;
+}
+
+.star-review button:hover,
+.star-review button:hover + button,
+.star-review button:hover + button + button,
+.star-review button:hover + button + button + button,
+.star-review button:hover + button + button + button + button {
+  color: #faa;
+}
+
+.left {
+  max-width: 50%;
+}
+
+.right {
+  max-width: 50%;
+}
+
+img {
+  width: 150px;
+  height: 330px;
+}
+
+body {
+  font-family: sans-serif;
+}
+
+.container {
+  display: flex;
+  min-height: 600px;
+  flex-direction: row;
+  /* justify-content: space-around; */
+  align-items: center;
+  gap: 20px;
+  padding-left: 50px;
+}
+
+.book-cover {
+  width: 20%;
+  margin-right: 30px;
+}
+
+.book-cover img {
+  /* width: 100%;
+  min-height: 300px;
+  max-height: 550px; */
+  padding-left: 100px;
+  width: 100%; /* Scale to the width of the container */
+  height: auto; /* Maintain aspect ratio */
+  max-width: 500px; /* Optional: Limit maximum width */
+}
+
+.book-details {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: space-around;
+  min-height: 350px;
+}
+
+.rating {
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  gap: 0;
+}
+
+.rating h3 {
+  margin: 0;
+}
+
+.star {
+  color: gold;
+  margin-right: 5px;
+}
+
+.review-section {
+  margin-top: 30px;
+  padding: 25px;
+}
+
+.review {
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+.new-review-form {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.new-review-form input {
+  /* max-width: 300px; */
+  max-height: 100px;
+}
+
+.new-review-form button {
+  max-width: 100px;
+  max-height: 50px;
+}
+
+.deleteButton {
+  width: 25px;
+  height: 30px;
+  padding: 0px;
+  border: none;
+  background-color: white;
+  margin-top: 10px;
+}
+
+.delete-icon {
+  max-height: 25px;
+  max-width: 25px;
+}
+
+.home a {
+  font-size: 30px;
+  text-decoration: none; /* Remove underline */
+  color: black; /* Set default color */
+}
+
+.home a:visited {
+  color: black; /* Keep color the same after click */
+}
+
+.left {
+  padding: 50px;
+}
+
+.top {
+  display: flex;
+  justify-content: center;
+}

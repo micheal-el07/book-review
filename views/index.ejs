@@ -1,26 +1,70 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="styles/style.css" />
-    <title>Document</title>
+    <title>Book Reviews</title>
+    <link rel="stylesheet" href="/styles/index.css" />
   </head>
   <body>
-    <div class="title"><h1>BOOKS REVIEW</h1></div>
-    <div class="options">
-      <button>Add Review</button>
-      <button>Filter</button>
-    </div>
-    <div class="books">
-      <div class="single-book book-id">
-        <img
-          src="https://upload.wikimedia.org/wikipedia/en/6/69/Omniscient_Reader%27s_Viewpoint_Volume_1_Cover.jpg"
-          alt="book-one"
-        />
-        <h3>Title: Omniscient Readers Viewpoint</h3>
-        <h4>Author: Shinshong</h4>
+    <h1>Book Reviews</h1>
+    <div class="feature">
+      <form action="books/books/add" method="get">
+        <button type="submit" class="add-book">Add Book</button>
+      </form>
+
+      <div class="filter-container">
+        <button id="filterButton">Sort Books</button>
+        <select id="sortOptions" style="display: none">
+          <option value="asc">Title (A-Z)</option>
+          <option value="desc">Title (Z-A)</option>
+        </select>
       </div>
     </div>
+
+    <div class="book-container" id="bookContainer">
+      <% if (data.length > 0) { %> <% data.forEach(book => { %>
+      <div class="book" data-title="<%= book.bookName.toLowerCase() %>">
+        <img
+          class="cover-page"
+          src="<%= book.bookImage %>"
+          alt="<%= book.bookName %>"
+        />
+        <a href="/books/<%= book.id %>"><%= book.bookName %></a>
+        <p><%= book.bookAuthor %></p>
+      </div>
+      <% }) %> <% } else { %>
+      <p>No books available at the moment.</p>
+      <% } %>
+    </div>
   </body>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const filterButton = document.getElementById("filterButton");
+      const sortOptions = document.getElementById("sortOptions");
+      const bookContainer = document.getElementById("bookContainer");
+
+      filterButton.addEventListener("click", () => {
+        sortOptions.style.display =
+          sortOptions.style.display === "none" ? "block" : "none";
+      });
+
+      sortOptions.addEventListener("change", () => {
+        const books = Array.from(bookContainer.getElementsByClassName("book"));
+        const sortOrder = sortOptions.value;
+
+        books.sort((a, b) => {
+          const titleA = a.getAttribute("data-title");
+          const titleB = b.getAttribute("data-title");
+          if (sortOrder === "asc") {
+            return titleA.localeCompare(titleB);
+          } else {
+            return titleB.localeCompare(titleA);
+          }
+        });
+
+        bookContainer.innerHTML = "";
+        books.forEach((book) => bookContainer.appendChild(book));
+      });
+    });
+  </script>
 </html>

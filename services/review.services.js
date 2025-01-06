@@ -1,21 +1,29 @@
 const { Review } = require("../models");
 
 const createNewReview = (body) => {
-  return Review.create({ ...body });
+  try {
+    return Review.create({ ...body });
+  } catch (error) {
+    return res.status(500).json({
+      status: false,
+      location: "services/review/createNewReview",
+      message: "Internal server error.",
+      error: error,
+    });
+  }
 };
 
-// const findOneBook = (searchParam) => {
-//   return Book.findOne({ where: { ...searchParam } });
-// };
-
-// const findBookById = async (id) => {
-//   const book = await Book.findByPk(id);
-//   if (!book) return null;
-//   return book;
-// };
-
 const findManyReviews = (searchParam) => {
-  return Review.findAll({ where: { ...searchParam } });
+  try {
+    return Review.findAll({ where: { ...searchParam } });
+  } catch (error) {
+    return res.status(500).json({
+      status: false,
+      location: "services/review/findManyReviews",
+      message: "Internal server error.",
+      error: error,
+    });
+  }
 };
 
 module.exports = { createNewReview, findManyReviews };

@@ -1,15 +1,29 @@
 const { Rating } = require("../models");
 
 const createNewRating = (body) => {
-  return Rating.create({ ...body });
+  try {
+    return Rating.create({ ...body });
+  } catch (error) {
+    return res.status(500).json({
+      status: false,
+      location: "services/rating/createNewRating",
+      message: "Internal server error.",
+      error: error,
+    });
+  }
 };
 
-// const findOneRating = (searchParam) => {
-//   return Rating.findOne({ where: { ...searchParam } });
-// };
-
 const findManyRatings = (searchParam) => {
-  return Rating.findAll({ where: { ...searchParam } });
+  try {
+    return Rating.findAll({ where: { ...searchParam } });
+  } catch (error) {
+    return res.status(500).json({
+      status: false,
+      location: "services/rating/findManyRatings",
+      message: "Internal server error.",
+      error: error,
+    });
+  }
 };
 
 module.exports = { createNewRating, findManyRatings };

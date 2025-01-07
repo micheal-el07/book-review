@@ -7,7 +7,7 @@
     <title>Document</title>
   </head>
   <body>
-    <form action="/books/books/add" method="POST">
+    <form action="/books/books/add" method="POST" enctype="multipart/form-data">
       <title>Add Book</title>
       <label for="title">Book Title</label>
       <input name="bookName" type="text" id="title" />
@@ -17,6 +17,10 @@
       <input name="bookImage" type="text" id="link" />
       <label for="description">Book Description</label>
       <input name="description" type="text" id="description" />
+      <label for="bookCover">Book Image:</label>
+      <input type="file" name="bookCover" id="bookCover" accept="image/*" />
+      <!-- <input type="file" name="cover" /> -->
+      <br />
       <button type="submit">Submit</button>
       <button onclick="goToIndex()">Cancel</button>
     </form>
@@ -28,3 +32,101 @@
     }
   </script>
 </html>
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles/add.css" />
+    <title>Add Book</title>
+  </head>
+  <body>
+    <h1>Add Book</h1>
+    <form
+      id="addBookForm"
+      action="/books/books/add"
+      method="POST"
+      enctype="multipart/form-data"
+    >
+      <label for="title">Book Title</label>
+      <input name="bookName" type="text" id="title" required />
+      <span
+        class="error-message"
+        id="titleError"
+        style="color: red; display: none"
+        >Book Title is required</span
+      >
+
+      <br />
+
+      <label for="author">Book Author</label>
+      <input name="bookAuthor" type="text" id="author" required />
+      <span
+        class="error-message"
+        id="authorError"
+        style="color: red; display: none"
+        >Book Author is required</span
+      >
+
+      <br />
+
+      <label for="link">Book Image Link</label>
+      <input name="bookImage" type="text" id="link" />
+
+      <br />
+
+      <label for="description">Book Description</label>
+      <input name="description" type="text" id="description" />
+
+      <br />
+
+      <label for="book-cover">Book Cover (Optional)</label>
+      <input type="file" name="book-cover" id="book-cover" accept="image/*" />
+
+      <br />
+
+      <button type="submit">Submit</button>
+      <button type="button" onclick="goToIndex()">Cancel</button>
+    </form>
+
+    <script>
+      // Cancel button functionality
+      function goToIndex() {
+        window.location.href = "../..";
+      }
+
+      // Client-side validation
+      const form = document.getElementById("addBookForm");
+      form.addEventListener("submit", (event) => {
+        const title = document.getElementById("title").value.trim();
+        const author = document.getElementById("author").value.trim();
+        const titleError = document.getElementById("titleError");
+        const authorError = document.getElementById("authorError");
+
+        // Reset error messages
+        titleError.style.display = "none";
+        authorError.style.display = "none";
+
+        let isValid = true;
+
+        // Validate title
+        if (!title) {
+          titleError.style.display = "block";
+          isValid = false;
+        }
+
+        // Validate author
+        if (!author) {
+          authorError.style.display = "block";
+          isValid = false;
+        }
+
+        // Prevent form submission if validation fails
+        if (!isValid) {
+          event.preventDefault();
+        }
+      });
+    </script>
+  </body>
+</html> -->

@@ -71,18 +71,36 @@ const getSingleBookHandler = expressAsyncHandler(async (req, res) => {
 });
 
 const addBookHandler = expressAsyncHandler(async (req, res) => {
-  const details = req.body;
+  const userInput = req.body;
+  const bookImage = req.file ? req.file.filename : null; // Get uploaded file info
 
   try {
-    if (
-      details.bookName === "" ||
-      details.bookAuthor === "" ||
-      details.bookImage === "" ||
-      details.description === ""
-    ) {
-      return res.redirect("../../");
+    if (userInput.bookName === "" || userInput.bookAuthor === "") {
+      return res.status(409).render("../views/error-page.ejs", {
+        result: {
+          status: "Error adding book.",
+          message: "Please enter the books details properly!",
+        },
+      });
     }
+
+    const details = {
+      bookName: userInput.bookName,
+      bookAuthor: userInput.bookAuthor,
+      description: userInput.description,
+      bookImage: bookImage ? `/uploads/${bookImage}` : userInput.bookImage,
+    };
+
     const book = await createNewBook(details);
+
+    if (!book) {
+      return res.status(409).render("../views/error-page.ejs", {
+        result: {
+          status: "Book not added.",
+          message: "Please try again!",
+        },
+      });
+    }
 
     res.redirect("../../");
   } catch (error) {
@@ -90,7 +108,7 @@ const addBookHandler = expressAsyncHandler(async (req, res) => {
       status: false,
       location: "controllers/books/addBookHandler",
       message: "Internal server error.",
-      error: error,
+      error: error.message,
     });
   }
 });

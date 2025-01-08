@@ -13,7 +13,7 @@ const reviewModel = (db) => {
       allowNull: false,
     },
     bookId: {
-      type: DataTypes.TEXT,
+      type: DataTypes.UUID,
       allowNull: false,
     },
   });

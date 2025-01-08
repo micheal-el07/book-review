@@ -1,14 +1,14 @@
-FROM node:20.16
+    FROM node:20.16
 
-WORKDIR /usr/src/app
+    WORKDIR /usr/src/app
 
-COPY package*.json ./
+    COPY package*.json ./
 
-RUN npm install
+    RUN npm install
 
-COPY . .
+    COPY . .
 
-EXPOSE 6500
+    EXPOSE 6500
 
-CMD ["npm", "start"]
+    CMD ["npx", "nodemon", "index.js"]
 

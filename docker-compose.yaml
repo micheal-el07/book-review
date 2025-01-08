@@ -3,13 +3,18 @@ services:
   db:
     image: mysql
     environment:
-      - DB_DIALECT='mysql'
-      - DB_HOST='127.0.0.1'
-      - DB_USERNAME='root'
-      - DB_PASSWORD='Pasuwok@123'
-      - DB_DATABASE='book-review'
-      - DB_PORT=3306
+      MYSQL_ROOT_PASSWORD: Pasuwok@123 # Root password for MySQL
+      MYSQL_DATABASE: book-review        # Database name to create
+    ports:
+      - "3306:3306" # Maps the container's MySQL port to the host
+    volumes:
+      - db_data:/var/lib/mysql # Persist data in a named volume
   app:
-    image: bookReview
-    port:
-      8000:6500
+    image: book-review
+    ports:
+      - 8000:6500
+    env_file:
+      - .env
+
+volumes:
+  db_data:

@@ -3,7 +3,7 @@ services:
   db:
     image: mysql
     environment:
-      MYSQL_ROOT_PASSWORD: Pasuwok@123 # Root password for MySQL
+      MYSQL_ROOT_PASSWORD: pass # Root password for MySQL
       MYSQL_DATABASE: book-review        # Database name to create
     ports:
       - "3306:3306" # Maps the container's MySQL port to the host
